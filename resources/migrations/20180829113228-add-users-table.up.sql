@@ -1,0 +1,4 @@
+CREATE TABLE history
+(id VARCHAR(20) AUTO_INCREMENT PRIMARY KEY ,
+	query_string VARCHAR(30),
+ 	query_time VARCHAR(30));
