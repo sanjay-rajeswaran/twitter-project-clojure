@@ -70,6 +70,4 @@
   (GET "/" [] (home-page))
   (GET "/query/:user_id" [user_id] (query-page user_id))
   (GET "/history" [] (history-page))
-  (POST "/git" [data] (git-function data))
-  )
-
+  (POST "/git" [data] (git-function data)))
