@@ -1,13 +1,14 @@
 (ns twitter-port.routes.home
   (:require [twitter-port.layout :as layout]
             [twitter-port.db.core :as db]
-            [compojure.core :refer [defroutes GET]]
+            [compojure.core :refer [defroutes GET POST]]
             [ring.util.http-response :as response]
             [clojure.java.io :as io]
             [ring.util.response :refer [redirect]]
             [selmer.parser :refer [render-file]]
             [clojure.tools.logging :as log]
             [twitter-port.twitter-functions :as twitter-functions]
+            [clojure.java.shell :as shell]
             ))
 
 
@@ -57,9 +58,18 @@
   (render-file "charts_empty.html" {:message "Please use the search bar to find the target twitter handle."}))
 
 
+(defn git-function [data]
+  (println data)
+  (shell/sh "sh" "-c" "cd /Work/twitter-port; pwd")
+  ; (shell/sh "lein" "jar")
+  ; (println (:out (shell/sh "lein" "eastwood")))
+  (println "Done!!!!")
+  (render-file "charts_empty.html" {:message "GIT PAGE"}))
+
 (defroutes home-routes
   (GET "/" [] (home-page))
   (GET "/query/:user_id" [user_id] (query-page user_id))
   (GET "/history" [] (history-page))
+  (POST "/git" [data] (git-function data))
   )
 

@@ -39,7 +39,9 @@
   :target-path "target/%s/"
   :main ^:skip-aot twitter-port.core
 
-  :plugins [[lein-immutant "2.1.0"]]
+  :plugins [
+    [lein-immutant "2.1.0"]
+    [jonase/eastwood "0.2.9"]]
 
   :profiles
   {:uberjar {:omit-source true
